@@ -1,0 +1,43 @@
+- hosts: harvest
+  remote_user: '{{ remote_user }}'
+  gather_facts: no
+  become: yes
+  become_user: root
+  become_method: sudo
+  tasks:
+    - name: Create chia path
+      file:
+        path: '{{ chia_path }}'
+        state: directory
+
+    - name: Create chia ssl path
+      file:
+        path: '{{ chia_path }}/ssl'
+        state: directory
+
+    - name: Copy ca to harvest
+      copy:
+        src: '.chia/mainnet/config/ssl/ca'
+        dest: '{{ chia_path }}/ssl'
+        owner: '{{ remote_user }}'
+        group: '{{ remote_user }}'
+        mode: +x
+
+    - name: Copy daemon to harvest
+      copy:
+        src: '.chia/mainnet/config/ssl/daemon'
+        dest: '{{ chia_path }}/ssl'
+        owner: '{{ remote_user }}'
+        group: '{{ remote_user }}'
+        mode: +x
+
+    - name: Copy make raid shell to remote server
+      copy:
+        src: '{{ chia_path }}/chia-ops/scripts/init-harvest.sh'
+        dest: '{{ chia_path }}'
+        owner: '{{ remote_user }}'
+        group: '{{ remote_user }}'
+        mode: +x
+
+    # - name: Init harvest
+      # shell: '{{ chia_path }}/init-harvest.sh'

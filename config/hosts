@@ -1,0 +1,9 @@
+[farmer]
+192.168.0.101
+
+[harvest]
+192.168.0.[102:119]
+
+[all:vars]
+remote_user=chia
+chia_path=/home/chia/chia
