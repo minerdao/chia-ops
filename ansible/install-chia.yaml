@@ -1,0 +1,19 @@
+- hosts: harvest
+  remote_user: '{{ remote_user }}'
+  gather_facts: no
+  become: yes
+  become_user: root
+  become_method: sudo
+  tasks:
+    - name: Create chia path
+      file:
+        path: '{{ chia_path }}'
+        state: directory
+
+    - name: Copy chia-blockchain to remote server
+      copy:
+        src: '{{ chia_path }}/chia-blockchain'
+        dest: '{{ chia_path }}'
+        owner: '{{ remote_user }}'
+        group: '{{ remote_user }}'
+        mode: +x

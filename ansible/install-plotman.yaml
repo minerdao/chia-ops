@@ -1,0 +1,15 @@
+- hosts: harvest
+  remote_user: '{{ remote_user }}'
+  gather_facts: no
+  become: yes
+  become_user: root
+  become_method: sudo
+  tasks:
+    - name: Create chia path
+      file:
+        path: '{{ chia_path }}'
+        state: directory
+
+    - name: Install plotman
+      shell: |
+        pip install --force-reinstall git+https://github.com/ericaltendorf/plotman@main
