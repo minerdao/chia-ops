@@ -9,6 +9,9 @@
       file:
         path: '{{ chia_path }}'
         state: directory
+        owner: '{{ remote_user }}'
+        group: '{{ remote_user }}'
+        mode: u=rwxr,g=xr,o=x
 
     - name: Copy chia-blockchain to remote server
       copy:

@@ -25,26 +25,10 @@ directories:
   # If multiple directories share a common prefix, reports will
   # abbreviate and show just the uniquely identifying suffix.
   tmp:
-    - /mnt/ssd01
-    - /mnt/ssd02
-    - /mnt/ssd03
-    - /mnt/ssd04
-    - /mnt/ssd05
-    - /mnt/ssd11
-    - /mnt/ssd12
-    - /mnt/ssd13
-    - /mnt/ssd14
-    - /mnt/ssd15
-    - /mnt/ssd21
-    - /mnt/ssd22
-    - /mnt/ssd23
-    - /mnt/ssd24
-    - /mnt/ssd25
-    - /mnt/ssd31
-    - /mnt/ssd32
-    - /mnt/ssd33
-    - /mnt/ssd34
-    - /mnt/ssd35
+    - /mnt/ssd1
+    - /mnt/ssd2
+    - /mnt/ssd3
+    - /mnt/ssd4
 
   # Optional: Allows overriding some characteristics of certain tmp
   # directories. This contains a map of tmp directory names to
