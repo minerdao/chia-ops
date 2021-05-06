@@ -13,6 +13,13 @@
         group: '{{ remote_user }}'
         mode: u=rwxr,g=xr,o=x
 
-    - name: Install plotman
-      shell: |
-        pip install --force-reinstall git+https://github.com/ericaltendorf/plotman@main
+    - name: Copy mount ssd to remote server
+      copy:
+        src: '{{ chia_path }}/chia-ops/scripts/mount-ssd.sh'
+        dest: '{{ chia_path }}'
+        owner: '{{ remote_user }}'
+        group: '{{ remote_user }}'
+        mode: +x
+
+    - name: Mount ssd
+      shell: '{{ chia_path }}/mount-ssd.sh'
