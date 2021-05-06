@@ -1,16 +1,8 @@
 - hosts: harvest
   remote_user: '{{ remote_user }}'
   gather_facts: no
-  become: yes
-  become_user: root
-  become_method: sudo
   tasks:
-    - name: Create chia path
-      file:
-        path: '{{ chia_path }}'
-        state: directory
-
-    - name: Install plotman
+    - name: Install & start plotman
       shell: |
         tmux new -s chia -d -n plotman
         tmux send-keys -t chia:plotman "source /home/chia/chia/chia-blockchain/activate" C-m

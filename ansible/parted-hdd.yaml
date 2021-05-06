@@ -13,13 +13,13 @@
         group: '{{ remote_user }}'
         mode: u=rwxr,g=xr,o=x
 
-    - name: Copy mount hdd to remote server
+    - name: Copy parted hdd to remote server
       copy:
-        src: '{{ chia_path }}/chia-ops/scripts/mount-hdd.sh'
+        src: '{{ chia_path }}/chia-ops/scripts/parted-hdd.sh'
         dest: '{{ chia_path }}'
         owner: '{{ remote_user }}'
         group: '{{ remote_user }}'
         mode: +x
 
-    - name: Mount hdd
-      shell: '{{ chia_path }}/mount-hdd.sh'
+    - name: Parted hdd
+      shell: '{{ chia_path }}/parted-hdd.sh'

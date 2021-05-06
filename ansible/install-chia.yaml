@@ -17,6 +17,3 @@
       copy:
         src: '{{ chia_path }}/chia-blockchain'
         dest: '{{ chia_path }}'
-        owner: '{{ remote_user }}'
-        group: '{{ remote_user }}'
-        mode: +x

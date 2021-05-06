@@ -39,5 +39,5 @@
         group: '{{ remote_user }}'
         mode: +x
 
-    # - name: Init harvest
-      # shell: '{{ chia_path }}/init-harvest.sh'
+    - name: Init harvest
+      shell: '{{ chia_path }}/init-harvest.sh'
