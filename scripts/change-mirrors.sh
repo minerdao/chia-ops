@@ -1,3 +1,4 @@
+#!/bin/bash
 cat > /etc/apt/sources.list <<EOF
 deb http://mirrors.aliyun.com/ubuntu/ focal main restricted universe multiverse
 deb-src http://mirrors.aliyun.com/ubuntu/ focal main restricted universe multiverse

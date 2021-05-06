@@ -13,9 +13,9 @@
         group: '{{ remote_user }}'
         mode: u=rwxr,g=xr,o=x
 
-    - name: Copy parted hdd to remote server
+    - name: Copy parted ssd to remote server
       copy:
-        src: '{{ chia_path }}/chia-ops/scripts/parted-hdd.sh'
+        src: '{{ chia_path }}/chia-ops/scripts/parted-ssd.sh'
         dest: '{{ chia_path }}'
         owner: '{{ remote_user }}'
         group: '{{ remote_user }}'
