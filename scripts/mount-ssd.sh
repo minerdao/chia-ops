@@ -5,8 +5,6 @@ for i in {0..3};
 do
 
 mkdir -p /mnt/ssd$i
-
-sleep 3
-
-mount /dev/nvme${i}n1p1 /mnt/ssd$i
+mount -t xfs /dev/nvme${i}n1p1 /mnt/ssd$i
+echo "/dev/nvme${i}n1p1 mounted"
 done
