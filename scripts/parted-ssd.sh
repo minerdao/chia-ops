@@ -15,7 +15,4 @@ parted -a optimal /dev/nvme${i}n1 <<EOF
   quit
 EOF
 
-echo "mkfs /dev/nvme${i}n1p1"
-mkfs.xfs -f -d agcount=128,su=128k,sw=2 -r extsize=256k /dev/nvme${i}n1p1
-
 done

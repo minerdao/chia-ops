@@ -7,8 +7,9 @@
         src: '{{ chia_path }}/chia-ops/config/plotman.yaml'
         dest: '/home/chia/.config/plotman/plotman.yaml'
 
-    - name: Start plotman
+    - name: Restart plotman
       shell: |
+        tmux kill-session -t chia
         tmux new -s chia -d -n plotman
         tmux send-keys -t chia:plotman "source /home/chia/chia/chia-blockchain/activate" C-m
         tmux send-keys -t chia:plotman "plotman plot" C-m

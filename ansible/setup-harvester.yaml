@@ -1,0 +1,28 @@
+- hosts: harvester
+  remote_user: '{{ remote_user }}'
+  gather_facts: no
+  tasks:
+    - name: Create chia ssl path
+      file:
+        path: '{{ chia_path }}/ssl'
+        state: directory
+        owner: '{{ remote_user }}'
+        group: '{{ remote_user }}'
+        mode: u=rwxr,g=xr,o=x
+
+    - name: Copy ca to harvest
+      copy:
+        src: '{{ chia_path }}/ssl/ca'
+        dest: '{{ chia_path }}/ssl'
+        owner: '{{ remote_user }}'
+        group: '{{ remote_user }}'
+        mode: +x
+
+    - name: Update ca and configure
+      shell: |
+        source /home/chia/chia/chia-blockchain/activate
+        chia init -c /home/chia/chia/ssl/ca
+        chia configure --set-farmer-peer 10.0.10.11:8447
+        chia configure --set-log-level=INFO
+      args:
+        executable: /bin/bash

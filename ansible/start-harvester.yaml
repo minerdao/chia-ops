@@ -1,0 +1,9 @@
+- hosts: harvester
+  remote_user: '{{ remote_user }}'
+  gather_facts: no
+  tasks:
+    - name: Start harvest
+      shell: |
+        tmux new -s chia -d -n plotman
+        tmux send-keys -t chia:plotman "source /home/chia/chia/chia-blockchain/activate" C-m
+        tmux send-keys -t chia:plotman "chia start harvester -r" C-m

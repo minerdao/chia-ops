@@ -1,25 +1,22 @@
-- hosts: harvester
+- hosts: mtail
   remote_user: '{{ remote_user }}'
   gather_facts: no
   become: yes
   become_user: root
   become_method: sudo
   tasks:
-    - name: Create chia path
+    - name: Create mtail directory
       file:
-        path: '{{ chia_path }}'
+        path: '{{ chia_path }}/chia-blockchain/data_collect'
         state: directory
         owner: '{{ remote_user }}'
         group: '{{ remote_user }}'
         mode: u=rwxr,g=xr,o=x
 
-    - name: Copy parted hdd to remote server
+    - name: Copy mtail files to remote mtail directory
       copy:
-        src: '{{ chia_path }}/chia-ops/scripts/parted-hdd.sh'
-        dest: '{{ chia_path }}'
+        src: '{{ chia_path }}/data_collect/'
+        dest: '{{ chia_path }}/chia-blockchain/data_collect'
         owner: '{{ remote_user }}'
         group: '{{ remote_user }}'
-        mode: +x
-
-    - name: Parted hdd
-      shell: '{{ chia_path }}/parted-hdd.sh'
+        mode: u=rwxr,g=xr,o=x

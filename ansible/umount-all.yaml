@@ -1,7 +1,10 @@
 - hosts: harvester
   remote_user: '{{ remote_user }}'
   gather_facts: no
+  become: yes
+  become_user: root
+  become_method: sudo
   tasks:
-    - name: Install plotman
+    - name: Umount ssd
       shell: |
-        tmux kill-session -t chia
+        umount -a

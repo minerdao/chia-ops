@@ -1,0 +1,7 @@
+ - hosts: mtail
+  remote_user: '{{ remote_user }}'
+  gather_facts: no
+  tasks:
+   - name: Run mtail
+     shell: |
+       /home/chia/chia/chia-blockchain/data_collect/run_mtail.sh

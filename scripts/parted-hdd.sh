@@ -1,6 +1,8 @@
 #!/bin/bash
 # mkfs & mount hdd
-for i in b c d;
+
+for i in b c d e;
+# for i in b c d e f g h i j k;
 do
 parted -a optimal /dev/sd${i} <<EOF
   rm 1
@@ -13,13 +15,4 @@ parted -a optimal /dev/sd${i} <<EOF
 EOF
 echo "/dev/sd${i}1 created"
 
-sleep 1s
-
-echo "mkfs /dev/sd${i} as ext4..."
-mkfs.ext4 /dev/sd${i}1
-
 done
-
-# change mnt mode
-echo "chown mnt points"
-chown -R $currentUser:$currentUser /mnt

@@ -4,20 +4,17 @@ sudo mkdir -p /home/$currentUser/prometheus
 sudo tee /home/$currentUser/prometheus/prometheus.yaml <<-'EOF'
 scrape_configs:
   # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
-  - job_name: 'Worker'
+  - job_name: 'Harvester'
     scrape_interval: 5s
     static_configs:
-      - targets: ['10.0.1.11:9100', '10.0.1.12:9100', '10.0.1.13:9100', '10.0.1.14:9100', '10.0.1.15:9100', '10.0.2.11:9100']
-
-  - job_name: 'Daemon'
-    scrape_interval: 5s
-    static_configs:
-      - targets: ['10.0.99.10:9100', '10.0.99.11:9100']
-
-  - job_name: 'Miner'
-    scrape_interval: 5s
-    static_configs:
-      - targets: ['10.0.99.12:9100', '10.0.99.13:9100', '10.0.99.14:9100']
+      - targets:
+        - 10.0.10.10:9100
+        - 10.0.10.12:9100
+        - 10.0.10.13:9100
+        - 10.0.10.14:9100
+        - 10.0.10.15:9100
+        - 10.0.10.16:9100
+        - 10.0.10.17:9100
 EOF
 
 sudo docker pull prom/prometheus:latest
@@ -31,4 +28,3 @@ sudo docker run -d \
   --config.file=/prometheus/prometheus.yaml \
   --storage.tsdb.path=/prometheus/database \
   --storage.tsdb.retention.time=90d \
-  --web.enable-admin-api

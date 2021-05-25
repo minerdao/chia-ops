@@ -1,31 +1,20 @@
-- hosts: harvest-5
+- hosts: harvester
   remote_user: '{{ remote_user }}'
   gather_facts: no
   become: yes
   become_user: root
   become_method: sudo
   tasks:
-    - name: Create chia path
-      file:
-        path: '{{ chia_path }}'
-        state: directory
-        owner: '{{ remote_user }}'
-        group: '{{ remote_user }}'
-        mode: u=rwxr,g=xr,o=x
-
-    - name: Install chia
-      shell: "cd /home/chia/chia/chia-blockchain && sh ./install.sh"
-
     - name: Copy check script to remote server
       copy:
-        src: '{{ chia_path }}/chia-ops/scripts/check-chia.sh'
+        src: '{{ chia_path }}/chia-ops/scripts/check-hdd.sh'
         dest: '{{ chia_path }}'
         owner: '{{ remote_user }}'
         group: '{{ remote_user }}'
         mode: +x
 
     - name: Chia version
-      shell: '{{ chia_path }}/check-chia.sh'
+      shell: '{{ chia_path }}/check-hdd.sh'
       register: check_result
 
     - name: Echo check result

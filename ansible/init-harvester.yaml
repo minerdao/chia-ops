@@ -1,4 +1,4 @@
-- hosts: harvest
+- hosts: harvester
   remote_user: '{{ remote_user }}'
   gather_facts: no
   become: yes
@@ -15,7 +15,7 @@
         path: '{{ chia_path }}/ssl'
         state: directory
 
-    - name: Copy ca to harvest
+    - name: Copy ca to harvester
       copy:
         src: '.chia/mainnet/config/ssl/ca'
         dest: '{{ chia_path }}/ssl'
@@ -23,7 +23,7 @@
         group: '{{ remote_user }}'
         mode: +x
 
-    - name: Copy daemon to harvest
+    - name: Copy daemon to harvester
       copy:
         src: '.chia/mainnet/config/ssl/daemon'
         dest: '{{ chia_path }}/ssl'
@@ -31,13 +31,13 @@
         group: '{{ remote_user }}'
         mode: +x
 
-    - name: Copy make raid shell to remote server
+    - name: Copy chia init to remote server
       copy:
-        src: '{{ chia_path }}/chia-ops/scripts/init-harvest.sh'
+        src: '{{ chia_path }}/chia-ops/scripts/init-harvester.sh'
         dest: '{{ chia_path }}'
         owner: '{{ remote_user }}'
         group: '{{ remote_user }}'
         mode: +x
 
     - name: Init harvest
-      shell: '{{ chia_path }}/init-harvest.sh'
+      shell: '{{ chia_path }}/init-harvester.sh'

@@ -1,0 +1,30 @@
+- hosts: harvester
+  remote_user: '{{ remote_user }}'
+  gather_facts: no
+  become: yes
+  become_user: root
+  become_method: sudo
+  tasks:
+    - name: Create prometheus run direction
+      file:
+        path: '/home/chia/prometheus/run'
+        state: directory
+
+    - name: Copy node exporter script to remote server
+      copy:
+        src: '{{ chia_path }}/chia-ops/scripts/install-node-exporter.sh'
+        dest: '{{ chia_path }}'
+        owner: root
+        group: root
+        mode: +x
+
+    - name: Copy node exporter service to remote server
+      copy:
+        src: '{{ chia_path }}/chia-ops/service/node-exporter.service'
+        dest: /etc/systemd/system/
+        owner: root
+        group: root
+        mode: +x
+
+    - name: Install node exporter
+      shell: '{{ chia_path }}/install-node-exporter.sh'

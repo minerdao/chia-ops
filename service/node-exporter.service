@@ -1,0 +1,11 @@
+[Unit]
+Description=Node Exporter
+After=network.target
+
+[Service]
+User=chia
+Type=simple
+ExecStart=/usr/local/bin/node_exporter --collector.textfile.directory="/home/chia/prometheus/run"
+
+[Install]
+WantedBy=multi-user.target

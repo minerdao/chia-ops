@@ -1,0 +1,13 @@
+- hosts: harvester
+  remote_user: '{{ remote_user }}'
+  gather_facts: no
+  tasks:
+    - name: Chia version
+      shell: 'source /home/chia/chia/chia-blockchain/activate && plotman version'
+      args:
+        executable: /bin/bash
+      register: check_result
+
+    - name: Echo check result
+      debug:
+        msg: '{{ check_result.stdout }}'
