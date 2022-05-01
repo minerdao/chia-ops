@@ -114,5 +114,5 @@ plotting:
   n_buckets: 128       # Number of buckets to split data into
   job_buffer: 81920     # Per job memory
   # If specified, pass through to the -f and -p options.  See CLI reference.
-  farmer_pk: ad34ff48901921b8abe0e9aa6471d084f56d95a651f475a693f566edac683d429c448c94ffb1c618c7e617e50f5e637d
-  pool_pk: ab6d0e8d9d70d70fec10eaa4c3cf1dac6f3ffaf65012b24aab1a0335ae6323a0dc5ebc9f266dcf56d67bb6f8a81a1fa1
+  farmer_pk: xxxxxxxxxxxxxxxxxxxxxxxx
+  pool_pk: xxxxxxxxxxxxxxxxxxxxxxx
